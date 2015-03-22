@@ -1,0 +1,380 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8' />
+        <meta name="viewport" content="width=320, user-scalable=no, initial-scale=0.5">
+        <link rel="stylesheet" href="vlog_suite.css">
+    </head>
+    <body id="body">
+        <div id="vlog-suite-app">
+            <div id="banner">
+                
+            </div>
+            <div id="app-content">
+                <div id="tagline" class="message-bar">
+                    Upload Once.  Publish Everywhere.  Reach Everyone.
+                </div>
+                <div id="notifications" class="message-bar hidden fadeOut"></div>
+                <div id="file-select-screen" class="screen">
+                    <div id='file-input-container' class='button-container'>
+                        <input id="file" type="file" accept="video/*">
+                    </div>
+                </div>
+                <div id="details-screen" class="screen hidden fadeOut">
+                    <form id="upload-form">
+                        <input id="title" type="text" placeholder="Title">
+                        <textarea id="description" placeholder="Enter description..."></textarea>
+                        <div id='upload-button-container' class='button-container'>
+                            <input id="upload-button" type="submit" value="Upload">
+                        </div>
+                        
+                    </form>
+                </div>
+                <div id="progress-screen" class="screen hidden fadeOut">
+                    <div id="fb-during-upload" class="progress-group hidden fadeOut">
+                        <p class="progress-label">Facebook Upload Progress:</p>
+                        <progress id="fb-upload-progress" max="1" value="0"></progress>
+                    </div>
+                    <div id="yt-during-upload" class="progress-group hidden fadeOut">
+                        <p class="progress-label">YouTube Upload Progress:</p>
+                        <progress id="yt-upload-progress" max="1" value="0"></progress>
+                    </div>
+                </div>
+                <div id="results-screen" class="screen hidden fadeOut">
+                    <div id="upload-confirmation-div">
+                        <p id="upload-confirmation">Your video was successfully uploaded!</p>
+                    </div>
+                    <table>
+                    <td id="fb-post-upload" class="post-upload-platform-container hidden fadeOut">
+                        <a id="fb-video-link" class="video-link" href="" target="_blank">Your Facebook Video</a>
+                        <progress id="fb-processing-progress"></progress>
+                        <p id="fb-pending-preview-text" class="pending-preview-text">Facebook is putting the finishing touches are your video.</p>
+                        <div id="fb-player"></div>
+                    </td>
+                    <td id="yt-post-upload" class="post-upload-platform-container hidden fadeOut">
+                        <a id="yt-video-link" class="video-link" href="" target="_blank">Your YouTube Video</a>
+                        <progress id="yt-processing-progress"></progress>
+                        <p id="yt-pending-preview-text" class="pending-preview-text">Youtube is putting the finishing touches are your video.</p>
+                        <div id="yt-player"></div>
+                    </td>
+                    </table>
+                    <div id='final-step'>
+                        <p id="stick-around-text">Stick around to preview your video</p>
+                        <p id="or-text">or</p>
+                        <div id='upload-another-container' class='button-container'>
+                            <input id="upload-another-button" type="submit" value="Upload Another" onclick="window.location.reload()">
+                        </div>
+                    </div
+                </div>
+            </div>
+            
+            <div id="social-bar">
+                <input type="image" id="logout-button" class="hidden fadeOut" src="img/logout_button.png" alt="Sign Out">
+                <div id="fb-container" class="social-container">
+                    <input type="image" id="fb-login-link" class="pre-fb-auth button" src="img/fb_connect_button.png" alt="Connect to Facebook">
+                    <div id="fb-user-data" class="hidden fadeOut">
+                        <img id="fb-profile-thumbnail" class="profile-cell">
+                        <span id="fb-profile-name" class="profile-cell" ></span>
+                    </div>
+                </div>
+                <div id="yt-container" class="social-container">
+                    <input type="image" id="yt-login-link" class="pre-auth button" src="img/yt_connect_button.png" alt="Connect to YouTube">
+                    <div id="yt-user-data" class="hidden fadeOut">
+                        <img id="channel-thumbnail" class="profile-cell">
+                        <span id="channel-name" class="profile-cell"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script src="vlogsuite.min.js"></script>	
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+        <script>
+            // layout scripts
+            var getIOSWindowHeight = function() {
+                // Get zoom level of mobile Safari
+                // Note, that such zoom detection might not work correctly in other browsers
+                // We use width, instead of height, because there are no vertical toolbars :)
+                var zoomLevel = document.documentElement.clientWidth / window.innerWidth;
+
+                // window.innerHeight returns height of the visible area. 
+                // We multiply it by zoom and get out real height.
+                return window.innerHeight * zoomLevel;
+            };
+            
+            wh = $(window).height();
+            //wh = getIOSWindowHeight();
+            bannerHeight = $('#banner').css('height');
+            contentHeight = wh-parseInt(bannerHeight);
+            $('#app-content').css('height', contentHeight+'px');
+            $(window).resize(function() {
+                wh = $(window).height();
+                //wh = getIOSWindowHeight();
+                bannerHeight = $('#banner').css('height');
+                contentHeight = wh-parseInt(bannerHeight);
+                $('#app-content').css('height', contentHeight+'px');
+            });
+        
+        var fadeOutFadeIn = function(outObject, inObject)
+        {
+        //var duration = $('.' + a).css('animation-duration');
+        //duration = duration.substring(0, duration.length-1) * 1000;
+        $(outObject).addClass('fadeOut');
+        setTimeout(function () {
+            $(outObject).addClass('hidden');
+            $(inObject).removeClass('hidden');
+            setTimeout(function () {  
+                $(inObject).removeClass('fadeOut');  
+            }, 20); 
+            
+        }, 500);
+
+        }
+        var fadeOut = function(object)
+        {
+        //var duration = $('.' + a).css('animation-duration');
+        //duration = duration.substring(0, duration.length-1) * 1000;
+        $(object).addClass('fadeOut');
+        setTimeout(function() {
+            $(object).addClass('hidden');
+        }, 500);
+
+        }
+        </script>
+        <script>
+            var TAGLINE_MSG = "Upload Once. Publish Everywhere. Reach Everyone.";
+            var NO_FILE_MSG = "No file selected.  Please select a file to upload to continue.";
+            /*
+            * event object properties:
+            *       event.ytChannelName : `str`
+            *       event.ytChannelThumbURL : `str` (URL)
+            */
+            function handleYTConnected(event) {
+                $('#channel-name').text(event.ytChannelName);
+                $('#channel-thumbnail').attr('src', event.ytChannelThumbURL);
+                fadeOutFadeIn($('#yt-login-link'), $('#yt-user-data'));
+                //$('#yt-user-data').removeClass('hidden');
+                //$('#yt-login-link').addClass('hidden');
+                $('#logout-button').removeClass('hidden');
+                $('#logout-button').removeClass('fadeOut');
+            }
+            document.addEventListener(VLConstants.YT_CONNECTED_EVENT, handleYTConnected, false);
+            
+            /*
+            * event object properties:
+            *       event.fbProfileName : `str`
+            *       event.fbProfileThumbURL : `str` (URL)
+            */
+            function handleFBConnected(event) {
+                //$('#fb-login-link').addClass('hidden');   
+                $('#fb-profile-thumbnail').attr('src', fbProfileThumbURL);
+                $('#fb-profile-name').text(event.fbProfileName);
+                //$('#fb-user-data').removeClass('hidden');
+                $('#logout-button').removeClass('hidden');
+                $('#logout-button').removeClass('fadeOut');
+                
+                fadeOutFadeIn($('#fb-login-link'), $('#fb-user-data'));
+            }
+            document.addEventListener(VLConstants.FB_CONNECTED_EVENT, handleFBConnected, false);
+            
+            /*
+            * event object properties:
+            *       None
+            */
+            function handleYTNotConnected(event) {
+                $('#yt-login-link').removeClass('hidden')
+                $('#yt-login-link').removeClass('fadeOut');
+            }
+            document.addEventListener(VLConstants.YT_NOT_CONNECTED_EVENT, handleYTNotConnected, false);
+            
+            /*
+            * event object properties:
+            *       None
+            */
+            function handleFBNotConnected(event) {
+                $('#fb-login-link').removeClass('hidden')
+                $('#fb-login-link').removeClass('fadeOut')
+            }
+            document.addEventListener(VLConstants.FB_NOT_CONNECTED_EVENT, handleFBNotConnected, false);
+            
+            /*
+            * event object properties:
+            *       event.bytesTransferred : `str` number
+            *       event.totalBytes : `str` number
+            &       event.percentage : `str` number
+            */
+            function handleYTUploadProgress(event) {
+                $('#yt-upload-progress').attr({
+                    value: event.bytesTransferred,
+                    max: event.totalBytes
+                });
+                $('#yt-upload-progress').attr('percentage',event.percentage+'%')
+                $('#yt-during-upload').removeClass('hidden');
+                $('#yt-during-upload').removeClass('fadeOut');
+            }
+            document.addEventListener(VLConstants.YT_UPLOAD_PROGRESS_EVENT, handleYTUploadProgress, false);
+            
+            /*
+            * event object properties:
+            *       event.ytVideoID : `str` number
+            */
+            function handleYTUploadComplete(event) {
+                var link = 'https://www.youtube.com/watch?v='+event.ytVideoID;
+                $('#yt-video-link').attr('href', link);
+                $('#yt-video-link').text(link);
+                $('#yt-post-upload').removeClass('hidden');
+                $('#yt-post-upload').removeClass('fadeOut');
+            }
+            document.addEventListener(VLConstants.YT_UPLOAD_COMPLETE_EVENT, handleYTUploadComplete, false);
+            
+            /*
+            * event object properties:
+            *       event.processingStatus " `str`
+            *       event.uploadStatus : `str` 
+            *       event.ytVideoID : `str` 
+            *       event.playerEmbedHtml : `str` (HTML)
+            */
+            function handleYTVideoProcessingProgress(event) {
+
+                if (event.processingStatus != 'processing') {
+                    if (event.uploadStatus == 'processed') {
+                        $('#yt-player').append(event.playerEmbedHtml);
+                        fadeOut($('#yt-processing-progress'))
+                        fadeOut($('#yt-pending-preview-text'))
+                        //$('#yt-processing-progress').addClass('hidden');
+                        //$('#yt-pending-preview-text').addClass('hidden');
+                    }
+
+                }
+            }
+            document.addEventListener(VLConstants.YT_VIDEO_PROCESSING_PROGRESS_EVENT, handleYTVideoProcessingProgress, false);
+            
+            /*
+            * event object properties:
+            *       event.bytesTransferred : `str` number
+            *       event.totalBytes : `str` number
+            &       event.percentage : `str` number
+            */
+            function handleFBUploadProgress(event) {
+                $('#fb-upload-progress').attr({
+                    value: event.bytesTransferred,
+                    max: event.totalBytes
+                });
+                $('#fb-upload-progress').attr('percentage',event.percentage+'%')
+                $('#fb-during-upload').removeClass('hidden');
+                $('#fb-during-upload').removeClass('fadeOut');
+            }
+            document.addEventListener(VLConstants.FB_UPLOAD_PROGRESS_EVENT, handleFBUploadProgress, false);
+            
+            /*
+            * event object properties:
+            *       event.fbVideoPostID : `str` number
+            */
+            function handleFBUploadComplete(event) {               
+                var link = 'https://www.facebook.com/video.php?v='+event.fbVideoPostID;
+                $('#fb-video-link').attr('href', link);
+                $('#fb-video-link').text(link);
+                $('#fb-post-upload').removeClass('hidden');
+                $('#fb-post-upload').removeClass('fadeOut');
+            }
+            document.addEventListener(VLConstants.FB_UPLOAD_COMPLETE_EVENT, handleFBUploadComplete, false);
+            
+            /*
+            * event object properties:
+            *       event.processingStatus : `str`
+            *       event.fbPlayerEmbedHtml : `str`
+            *       event.fbVideoPostId : `str`
+            */
+            function handleFBVideoProcessingProgress(event) {
+
+                if (event.processingStatus == 'processing') {
+                    
+                }
+                else {
+                    $('#fb-player').append(event.fbPlayerEmbedHtml);
+                    fadeOut($('#fb-processing-progress'))
+                    fadeOut($('#fb-pending-preview-text'))
+                    //$('#fb-processing-progress').addClass('hidden');
+                    //$('#fb-pending-preview-text').addClass('hidden');
+                }
+            }
+            document.addEventListener(VLConstants.FB_VIDEO_PROCESSING_PROGRESS_EVENT, handleFBVideoProcessingProgress, false);
+            
+            /*
+            *   event object properties:
+            *       None
+            */
+            function handleLogout(event) {
+                // essentially refresh the session
+                $('#yt-login-link').removeClass('hidden')
+                $('#fb-login-link').removeClass('hidden')
+                $('#yt-user-data').addClass('hidden');
+                $('#fb-user-data').addClass('hidden');
+                $('#logout-button').addClass('hidden');
+            }
+            document.addEventListener(VLConstants.LOGOUT_EVENT, handleLogout, false);
+            
+            
+            /*
+            *   event object properties:
+            *       None
+            */
+            function handleAllUploadsComplete(event) {
+                fadeOutFadeIn($('#progress-screen'), $('#results-screen'));
+                //$('#progress-screen').addClass('hidden');
+                //$('#results-screen').removeClass('hidden');
+                
+            }
+            document.addEventListener(VLConstants.ALL_UPLOADS_COMPLETE, handleAllUploadsComplete, false);
+            
+            
+            $('#fb-login-link').click(function() {
+                doFBLogin();
+            });
+            
+
+            function initiateUploadsCallback(e) {
+                e.preventDefault();
+                
+                fadeOutFadeIn($('#details-screen'), $('#progress-screen'));
+                //$('#details-screen').addClass('hidden');
+                //$('#progress-screen').removeClass('hidden');
+                
+                var file = $('#file').get(0).files[0]
+                if (file) {
+                    $('#submit').attr('disabled', true);
+                    var data = {
+                        file : file,
+                        title : $('#title').val(),
+                        description : $('#description').val(),
+                        tags: [
+                                "test", "test1", "test2"
+                            ],
+                        categoryId: 22,
+                        fbPrivacy: "SELF"
+                    };
+                    initiateUploads(data);
+                }
+            }
+            function fileBrowseCallback() {
+                if ($('#file').get(0).files[0] != undefined) {
+                    fadeOutFadeIn($('#file-select-screen'),$('#details-screen'))
+                    //$('#file-select-screen').addClass('hidden');
+                    //$('#details-screen').removeClass('hidden');
+                }
+                else {
+                    
+                }
+            }
+            $('#upload-form').submit(initiateUploadsCallback);
+            $('#yt-login-link').click(checkAuth(false));
+            $('#logout-button').click(logoutAll);
+            $("#file").change(fileBrowseCallback);
+        
+        
+        </script>
+    </body>
+</html>

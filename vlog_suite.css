@@ -1,0 +1,466 @@
+@import url(http://fonts.googleapis.com/css?family=Expletus+Sans);
+
+/* Basic resets */
+
+* { 
+	margin:0; padding:0; 
+	box-sizing: border-box;
+    opacity: 1;
+        -webkit-transition:opacity 0.25s 0.25s;
+       -moz-transition:opacity 0.25s 0.25s;
+         -o-transition:opacity 0.25s 0.25s;
+            transition:opacity 0.25s 0.25s;
+}
+html {
+    background-color: black;
+}
+body {
+    font-family: "Open Sans", sans-serif;
+    font-size: 1em;
+    max-width: 800px;
+    font-family: "Expletus Sans", sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+}
+#banner {
+    background-image: url(img/banner.jpg);
+    width:100%;
+    position:relative;
+    padding-bottom: 30.77%;
+    background-size: contain;
+}
+
+.message-bar {
+    width: inherit;
+    text-align: center;
+    color: white;
+    background: black;
+    font-size: 130%;
+    height: 5%;
+}
+
+div.button-container {
+    position: relative;    
+    background-size: contain;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+input[type="file"], input[type="submit"] {
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+#file-input-container {
+    background: url(img/file_input_button.png) no-repeat center center;
+    width: 35%;
+    height: 15%;
+    top:40%;
+    background-size: contain;
+}
+
+#vlog-suite-app {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+.button {
+    cursor: pointer;
+}
+
+.social-container {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+.profile-cell {
+    display: inline-block;
+    vertical-align: middle;
+}
+#app-content {
+    background-image: -webkit-linear-gradient( 115deg, rgba(120,120,120,1), rgba(150,150,150,1) 30%,
+                                                rgba(220,220,220,1) 55%, rgba(220,220,220,1) 60%, 
+												rgba(150,150,150,1) 85%, rgba(120,120,120,1) 100%);
+    background-image: -o-linear-gradient( 115deg, rgba(120,120,120,1), rgba(150,150,150,1) 30%,
+                                                rgba(220,220,220,1) 55%, rgba(220,220,220,1) 60%, 
+												rgba(150,150,150,1) 85%, rgba(120,120,120,1) 100%);
+    background-image: -moz-linear-gradient( 115deg, rgba(120,120,120,1), rgba(150,150,150,1) 30%,
+                                                rgba(220,220,220,1) 55%, rgba(220,220,220,1) 60%, 
+												rgba(150,150,150,1) 85%, rgba(120,120,120,1) 100%);
+    background-image: linear-gradient( 115deg, rgba(120,120,120,1), rgba(150,150,150,1) 30%,
+                                                rgba(220,220,220,1) 55%, rgba(220,220,220,1) 60%, 
+												rgba(150,150,150,1) 85%, rgba(120,120,120,1) 100%);
+    width:100%;
+}
+
+.screen {
+    width: 100%;
+    height: 80%;
+}
+
+#upload-form {
+    height: 90%;
+    position: relative;
+    top: 10%;
+}
+
+#title {
+    display: block;
+    margin: auto;
+    width: 70%;
+}
+
+#description {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    height: 45%;
+    min-eight: 1.25em;
+    margin-top: 2%;
+}
+
+#upload-button-container{
+    background: url(img/upload_button.png) no-repeat center center;
+    height: 15%;
+    background-size: contain;
+    margin-top: 2%;
+    margin-right: 10%;
+    width: 30%;
+}
+
+#logout-button {
+    position: absolute;
+    right: 0%;
+    bottom: 0%;
+}
+
+.fill {
+  width: inherit;
+  height: inherit;
+}
+
+#social-bar {
+    background-image: -webkit-linear-gradient( 90deg, rgba(180,180,180,1), 
+                                                rgba(250,250,250,1) 25%,  
+                                                rgba(250,250,250,1) 65%,
+                                                rgba(180,180,180,1) 100%);
+    background-image: -o-linear-gradient( 90deg, rgba(180,180,180,1), 
+                                                rgba(250,250,250,1) 25%,  
+                                                rgba(250,250,250,1) 65%,
+                                                rgba(180,180,180,1) 100%);
+    background-image: -moz-linear-gradient( 90deg, rgba(180,180,180,1), 
+                                                rgba(250,250,250,1) 25%,  
+                                                rgba(250,250,250,1) 65%,
+                                                rgba(180,180,180,1) 100%);                         
+    background-image: linear-gradient( 90deg, rgba(180,180,180,1), 
+                                                rgba(250,250,250,1) 25%,  
+                                                rgba(250,250,250,1) 65%,
+                                                rgba(180,180,180,1) 100%);                        
+    width:100%; 
+    position:relative;
+    display: table;
+    height: 15%;
+}
+
+
+
+.delayedFadeIn {
+    opacity: 1;
+    -webkit-transition:opacity 0.25s 0.25s;
+       -moz-transition:opacity 0.25s 0.25s;
+         -o-transition:opacity 0.25s 0.25s;
+            transition:opacity 0.25s 0.25s;
+}
+.fadeOut {
+    opacity: 0;
+    -webkit-transition:opacity 0.25s;
+       -moz-transition:opacity 0.25s;
+         -o-transition:opacity 0.25s;
+            transition:opacity 0.25s;
+}
+.hidden {
+    display:none
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+
+#channel-thumbnail {
+    width: 50px;
+}
+
+label {
+  display: block;
+}
+
+input[type="text"], textarea, progress {
+  font-size: 2em;
+  width: 15em;
+  font-family: "Open Sans", sans-serif;
+}
+
+progress {
+  display: block;
+}
+
+textarea {
+  height: 7em;
+}
+
+iframe {
+    width: 50%;
+    height:50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+p {
+    color: white;
+    text-shadow: .1em .1em .15em #777777;
+    font-size: 1.25em;
+}
+
+
+/* Styling the determinate progress element */
+.progress-label {
+    margin-left: 2em;
+    padding: 2%;
+    color: white;
+    text-shadow: .1em .1em .15em #777777;
+    font-size: 1.25em;
+}
+
+.progress-group {
+    padding-top: 5%;
+}
+
+progress[value] {
+	/* Get rid of the default appearance */
+	appearance: none;
+	
+	/* This unfortunately leaves a trail of border behind in Firefox and Opera. We can remove that by setting the border to none. */
+	border: none;
+	
+	/* Although firefox doesn't provide any additional pseudo class to style the progress element container, any style applied here works on the container. */
+	  background-color: whiteSmoke;
+	  border-radius: 3px;
+	  box-shadow: 0 2px 3px rgba(0,0,0,.5) inset;
+	
+	/* Of all IE, only IE10 supports progress element that too partially. It only allows to change the background-color of the progress value using the 'color' attribute. */
+	height:1em;
+    width: 50%;
+	margin-right: auto;
+    margin-left: auto;
+    display: -webkit-box;
+}
+
+/*
+Webkit browsers provide two pseudo classes that can be use to style HTML5 progress element.
+-webkit-progress-bar -> To style the progress element container
+-webkit-progress-value -> To style the progress element value.
+*/
+
+@-webkit-keyframes animate-stripes { 100% { background-position: -105px 0; } }
+@-webkit-keyframes animate-stripes-indeterminate { 50% { background-position: 100px 0; }, 100% { background-position: -100px 0; } }
+@-o-keyframes animate-stripes { 100% { background-position: -105px 0; } }
+@-o-keyframes animate-stripes-indeterminate { 50% { background-position: 100px 0; }, 100% { background-position: -100px 0; } }
+@-moz-keyframes animate-stripes { 100% { background-position: -105px 0; } }
+@-moz-keyframes animate-stripes-indeterminate { 50% { background-position: 100px 0; }, 100% { background-position: -100px 0; } }
+@keyframes animate-stripes { 100% { background-position: -105px 0; } }
+@keyframes animate-stripes-indeterminate { 50% { background-position: 100px 0; }, 100% { background-position: -100px 0; } }
+
+progress:not([value]) {
+    position: relative;
+    border-radius: 7px;
+	width: 50%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+progress:not([value])::-webkit-progress-bar{
+    position: relative;
+    display: block;
+    background-size: 70px 100%, 100% 100%, 100% 100%;
+    border-radius: 3px;
+    background-image: -webkit-linear-gradient( -150deg, transparent, transparent 20%, 
+                                                rgba(0,170,255,.6) 20%, rgba(0,170,255,.6) 40%,
+                                                transparent 40%, transparent 60%, 
+                                                rgba(0,170,255,.6) 60%, rgba(0,170,255,.6) 80%, transparent 80%), 
+                      -webkit-linear-gradient( top, rgba(0,0,255,.1) 5%, 
+                                                rgba(255, 255, 255, .25) 40%, rgba(255, 255, 255, .25) 0%, 
+                                                rgba(0,0,255,.2) 100%), 
+                      -webkit-linear-gradient( left, #ffffff, #ffffff);   
+    -webkit-animation: animate-stripes-indeterminate 3s linear infinite;
+    box-shadow: 0 0.1em 0.2em rgba(0,0,0,.2) inset, inset 0 .2em 0.2em rgba(255,255,255,.5),  inset 0 -0.1em 0.2em rgba(0,0,0,.25), inset 0 -0.05em 0 rgba(255,255,255,.2),  0 0.01em 0 rgba(0,0,0,.1);
+
+}
+
+progress[value]::-webkit-progress-bar {
+	background-color: whiteSmoke;
+	border-radius: 3px;
+	background-image: -webkit-linear-gradient( top, rgba(0,0,255,.1) 5%, 
+                                                rgba(255, 255, 255, .25) 40%, rgba(255, 255, 255, .25) 0%, 
+                                                rgba(0,0,255,.2) 100%),                      
+	background-size: 50% 100%, 100% 100%, 100% 100%;
+    box-shadow: 0 0.1em 0.2em rgba(0,0,0,.5) inset, inset 0 .2em 0.2em rgba(255,255,255,.5),  inset 0 -0.1em 0.2em rgba(0,0,0,.25), inset 0 -0.05em 0 rgba(255,255,255,.2),  0 0.01em 0 rgba(0,0,0,.1);
+    
+}
+
+progress[value]::-webkit-progress-value {
+	position: relative;
+	border-radius:3px;
+	background-image: -webkit-linear-gradient( -150deg, transparent, transparent 20%, 
+                                                rgba(0,170,255,.6) 20%, rgba(0,170,255,.6) 40%,
+                                                transparent 40%, transparent 60%, 
+                                                rgba(0,170,255,.6) 60%, rgba(0,170,255,.6) 80%, transparent 80%), 
+                      -webkit-linear-gradient( top, rgba(0,0,255,.1) 5%, 
+                                                rgba(255, 255, 255, .25) 40%, rgba(255, 255, 255, .25) 0%, 
+                                                rgba(0,0,255,.2) 100%), 
+                      -webkit-linear-gradient( left, #ffffff, #ffffff);
+
+    box-shadow: 0 0.1em 0.2em rgba(0,0,0,.2) inset, inset 0 .2em 0.2em rgba(255,255,255,.5),  inset 0 -0.1em 0.2em rgba(0,0,0,.25), inset 0 -0.05em 0 rgba(255,255,255,.2),  0 0.01em 0 rgba(0,0,0,.1);
+    background-size: 70px 100%, 100% 100%, 100% 100%;
+    -webkit-animation: animate-stripes 3s linear infinite;
+}
+
+
+/* Let's spice up things little bit by using pseudo elements. */
+
+progress[value]:after {
+	/* Only webkit/blink browsers understand pseudo elements on pseudo classes. A rare phenomenon! */
+	content: attr(percentage);
+    padding-left: 0.5em;
+    color: white;
+    text-shadow: .1em .1em .15em #777777;
+}
+
+/* Firefox provides a single pseudo class to style the progress element value and not for container. -moz-progress-bar */
+
+
+/* Fallback technique styles */
+.progress-bar {
+	background-color: whiteSmoke;
+	border-radius: 3px;
+	box-shadow: 0 2px 3px rgba(0,0,0,.5) inset;
+
+	/* Dimensions should be similar to the parent progress element. */
+	width: 100%; height:20px;
+}
+
+.progress-bar span {
+	background-color: royalblue;
+	border-radius: 3px;
+	
+	display: block;
+	text-indent: -9999px;
+}
+
+@-moz-document url-prefix() {
+    progress[value] {
+	
+	/* Of all IE, only IE10 supports progress element that too partially. It only allows to change the background-color of the progress value using the 'color' attribute. */
+	height:1em;
+    width: 50%;
+	margin-right: auto;
+    margin-left: auto;
+    }
+
+    progress:not([value]) {
+        position: relative;
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    progress[value]:after {
+        /* Only webkit/blink browsers understand pseudo elements on pseudo classes. A rare phenomenon! */
+        content: attr(percentage);
+        padding-left: 0.5em;
+        color: white;
+        text-shadow: .1em .1em .15em #777777;
+    }
+
+    /* Firefox provides a single pseudo class to style the progress element value and not for container. -moz-progress-bar */
+    progress[value]::-moz-progress-bar { background-image: -moz-linear-gradient(-150deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 20%, rgba(0, 170, 255, 0.6) 20%, rgba(0, 170, 255, 0.6) 40%, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0) 60%, rgba(0, 170, 255, 0.6) 60%, rgba(0, 170, 255, 0.6) 80%, rgba(0, 0, 0, 0) 80%), -moz-linear-gradient(center top , rgba(0, 0, 255, 0.1) 5%, rgba(255, 255, 255, 0.25) 40%, rgba(255, 255, 255, 0.25) 0%, rgba(0, 0, 255, 0.2) 100%), -moz-linear-gradient(left center , #ffffff, #ffffff); background-size: 75px 100%, 100% 100%, 100% 100%; border-radius: 3px; }
+
+    /* Fallback technique styles */
+    .progress-bar {
+        width: 100%; 
+        height:20px;
+    }
+
+    .progress-bar span {
+        display: block;
+        text-indent: -9999px;
+    }
+}
+
+p[data-value] { 
+  
+  position: relative; 
+}
+
+/* The percentage will automatically fall in place as soon as we make the width fluid. Now making widths fluid. */
+
+p[data-value]:after {
+	content: attr(data-value) '%';
+	position: absolute; right:0;
+}
+
+#results-screen {
+    text-align: center;
+}
+.pending-preview-text {
+    font-size: 1em;
+}
+#upload-confirmation-div {
+    height: 10%;
+    display: table;
+    width: 100%;
+}
+#upload-confirmation {
+    vertical-align: middle;
+    display: table-cell;
+    text-align: center;
+}
+
+#fb-player {
+    width: 60%;
+    height: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#fb-player > iframe {
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#final-step {
+    height: 25%
+}
+#upload-another-container {
+    height: 40%;
+    background: url(img/upload_button.png) no-repeat center center;
+    background-size: contain;
+    width: 30%;
+}
+
+.post-upload-platform-container {
+    height: 50%;
+    width: 50%;
+}
+/* Now we are good to duplicate html code for other skills and then add the css code for the new skill based on data-skill */
+
+  
+/* THE END */
+
